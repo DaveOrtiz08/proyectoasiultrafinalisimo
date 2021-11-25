@@ -56,9 +56,9 @@
               <tr>
                   <th style="border: 5px solid rgb(248, 35, 135);">{{elemento.pk}}</th>
                   {% if elemento.temperatura > 50  %}
-                  <th style="border: 5px solid rgb(255, 136, 136);">{{elemento.temperatura}}</th>
+                  <th style="border: 5px solid rgb(255, 0, 149);">{{elemento.temperatura}}</th>
                   {% else %}
-                  <th style="border: 5px solid rgb(169, 255, 173);">{{elemento.temperatura}}</th>
+                  <th style="border: 5px solid rgb(255, 255, 255);">{{elemento.temperatura}}</th>
                   {% endif %}
                   <th style="border: 5px solid rgb(248, 35, 135);">{{elemento.color}}</th>
                   <th style="border: 5px solid rgb(248, 35, 135);">{{elemento.inflamation}}</th>
@@ -91,20 +91,20 @@
            </table>
       <div id="Layer1" style="width:700px; height:-400px; overflow: scroll;" >
         
-        <table style="width:auto; border: 5px solid rgb(251, 245, 155);" id="MATRIZ" align="center" valign="top">
+        <table style="width:auto; border: 5px solid rgb(250, 0, 208);" id="MATRIZ" align="center" valign="top">
                 {% for i in euclidea%}
                 <th>{{forloop.counter}}</th>
                 {% endfor %}
     
                 {% for i in euclidea %}
-                <tr style="border: 5px solid rgb(128, 223, 240);">
+                <tr style="border: 5px solid rgb(226, 0, 246);">
                     <th>{{forloop.counter}}</th>
     
                     {% for j in i %}
                     {% if j == 0  %}
-                    <td style="border: 5px solid rgb(31, 210, 255);"> {{j}}</td>
+                    <td style="border: 5px solid rgb(255, 255, 255);"> {{j}}</td>
                     {% else %}
-                    <td style="border: 5px solid rgb(85, 253, 169);"> {{j}}</td>
+                    <td style="border: 5px solid rgb(226, 0, 246);"> {{j}}</td>
                     {% endif %}
                     {% endfor %}
                 </tr>
@@ -119,9 +119,9 @@
         <tr>
           <td>
               <tr>
-                  <th style="border: 5px solid rgb(69, 247, 253);">R1</th>
+                  <th style="border: 5px solid rgb(255, 255, 255);">R1</th>
                   <th style="border: 5px solid rgb(248, 35, 135);">R2</th>
-                  <th style="border: 5px solid rgb(69, 247, 253);">DISTANCIA</th>
+                  <th style="border: 5px solid rgb(255, 255, 255);">DISTANCIA</th>
                   <th style="border: 5px solid rgb(248, 35, 135);">TRUE/FALSE</th>
               </tr>
           </td>
