@@ -1,11 +1,83 @@
-{% extends 'home/index.html' %}
-{% block contenido %}
+{% extends 'home/index.html' %} {% block contenido %}
 
-    <h1 style="color:  rgb(248, 0, 236);"><font size="6">¿QUE ES EL CANCER DE MAMA?</font></h1>
-    <p align="justify"><font size="4" style="color:  rgb(126, 21, 120);" >El cáncer de mama es una enfermedad en la cual las células de la mama se multiplican sin control. Existen distintos tipos de cáncer de mama. El tipo de cáncer de mama depende de qué células de la mama se vuelven cancerosas.
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="logo.ico">
+    <title>About</title>
+</head>
+<style type="text/css">
+    .zoom {
+        /* Aumentamos la anchura y altura durante 2 segundos */
+        transition: width 0.1s, height 0.3s, transform 0.3s;
+    }
+    
+    .zoom:hover {
+        /* tranformamos el elemento al pasar el mouse por encima al doble de
+           su tamaño con scale(2). */
+        transform: scale(1.1);
+    }
+</style>
 
-        El cáncer de mama puede comenzar en distintas partes de la mama. Las mamas constan de tres partes principales: lobulillos, conductos y tejido conectivo. Los lobulillos son las glándulas que producen leche. Los conductos son los tubos que transportan la leche al pezón. El tejido conectivo (formado por tejido fibroso y adiposo) rodea y sostiene todas las partes de la mama. La mayoría de los cánceres de mama comienzan en los conductos o en los lobulillos.
-        
-        El cáncer de mama puede diseminarse fuera de la mama a través de los vasos sanguíneos y los vasos linfáticos. Cuando el cáncer de mama se disemina a otras partes del cuerpo, se dice que ha hecho metástasis.</font></p>
-    <p><center><img src="data:image/jpeg;base64,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" width="500" height="300" ></center></p>
+<body style="background-color: rgb(214, 142, 184);">
+    <h1>
+        <marquee>
+            <font face="Times New Roman" style="color:#770077;">OCTUBRE MES DE LA LUCHA CONTRA EN CÁNCER DE MAMÁ</font>
+        </marquee>
+    </h1>
+    <h1 align="center" style="color: white;">¿Quienes Somos?</h1>
+    <center>
+        <a href="https://www.ulaccam.org/ong/CEPREME" target="_blank "><img class="zoom" src="https://www.gob.mx/cms/uploads/article/main_image/87651/imagen-blog-CANCER-DE-MAMA-JA.jpg" width="350 " height="200 "></a>
+    </center>
+
+    </a>
+    <h2 align="center " style="color: white; ">En México existen muchas fundaciones que se encargan de las revisiones medicas de personas con cancer ademas de que las alientas a seguir adelante demostrando que son unas valientes guerreras capaces de lograr con cualquier cosa y una de ellas es
+        el cancer de mama, alguans de estas fundaciones son:</h2>
+    <font size=5>
+        <p style="color: rgba(255, 0, 170, 0.747); ">🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀</p>
+    </font>
+    <font size=4>
+        <h3 style="color: #ff0000; ">Fundacion COMESAMA A.C.</h3>
+    </font>
+    <p align="right " style=" color: rgb(0, 0, 0); ">Esta funcacion ace en 2010, como iniciativa de Fundación CIMA, para formar una coalición de asociaciones, llamada Coalición Mexicana por la Salud Mamaria que afrontara la urgencia de hacer valer de manera organizada y competente, las necesidades de
+        las pacientes de cáncer de mama durante la revisión de la NOM SSA2-041. Del trabajo llevado a cabo en el año 2010, se logró que en dicha Norma Oficial se integraran varias de las demandas de las pacientes, entre ellas, que la edad de inicio del
+        tamizaje por mastografía se mantuviera a partir de los 40 años. En 2017, después de haberse consolidado como acreditado interlocutor de las autoridades en salud, los tomadores de decisiones y las pacientes con cáncer de mama, la coalición se constituyó
+        en asociación civil sin fines de lucro. COMESAMA A.C., actualmente reúne a 30 organizaciones que trabajan a lo largo de la República Mexicana con el principal objetivo de incidir en política pública sobre cáncer de mama y salud reproductiva de
+        la mujer</p>
+    <p style="color: #ff0000; ">Misión </p>
+    <p align="right " style="color: rgb(0, 0, 0); "> Contribuir a revertir la tasa de morbimortalidad por causa del cáncer de mama en México a través de la incidencia en política pública.</p>
+    <p style="color: #ff0000; ">Visión</p>
+    <p align="right " style="color: rgb(0, 0, 0); ">Consolidarnos como una fuerza social reconocida, capaz de llevar la voz de la sociedad civil a diferentes foros, proponiendo mejoras en los servicios de salud.</p>
+    <font size=5>
+        <p style="color: rgba(255, 0, 170, 0.747); ">🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀</p>
+    </font>
+    <font size=5>
+        <h4 style="color: #ff0000; ">Fundacion Clima</h4>
+    </font>
+    <p align="right " style="color: rgb(0, 0, 0); "> Somos una organización no gubernamental, sin fines de lucro, que contribuye a disminuir la mortalidad por cáncer de mama en México a través de siete líneas de acción: Información y Educación; Servicio a Pacientes; Plataforma Tanto por Hacer; Alianzas
+        Estratégicas; Incidencia en Política Pública; Programas Comunitarios y Fortalecimiento Institucional. -Fundacion Clima</p>
+    <p style="color: #ff0000; ">Visión</p>
+    <p align="right " style="color: rgb(0, 0, 0); ">Hacer del cáncer de mama una enfermedad que no te arranque la vida.</p>
+    <font size=5>
+        <p style="color: rgba(255, 0, 170, 0.747); ">🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀-🎀</p>
+    </font>
+    <p align="center " style="color: rgb(255, 255, 255); "> Da clik en las imagenes para ir a fundaciones de lucha contra el cancer </p>
+    <a href="https://www.ulaccam.org/ong/femama " target="_blank ">
+        <div align="center "> <img class="zoom " src="https://cdn-cinfasalud.cinfa.com/wp-content/uploads/2019/07/CinfaSalud-imagen-cancer-mama-600.jpg " alt=" " width="350 " height="200 "></div>
+    </a>
+    <a href="https://www.ulaccam.org/ong/amuro " target="_blank ">
+        <div align="center "> <img class="zoom " src="https://navitasmed.com/wp-content/uploads/2020/04/Blog-octubre_navitas.png" alt=" " width="350 " height="200 "></div>
+    </a>
+    <a href="https://www.ulaccam.org/ong/fuca " target="_blank ">
+        <div align="center "> <img class="zoom " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKWXId3RIMKvQazZ9qR369oD2XgVv8z-Uieg&usqp=CAU" alt=" " width="350 " height="200 "></div>
+    </a>
+
+    <h1 align="center " style="color: white; ">¿Quieres saber más sobre esta enfermedad?</h1>
+    <p align="center " style="color: white; ">Da clic en el enlace para ir al video</p>
+    <a href="https://youtu.be/T-xYYfQM7QU " target="_blank ">
+        <div align="center "><img class="zoom " src="https://lh3.googleusercontent.com/proxy/_A7lrNJ4nWna9Mdguf2PtnIOy0saVytJV_Zywz165HSM4izFUl-RE5m7H8Gi73rwqLW7igVBXGLRgrRIas1-ACl6yOp24gT0Ky1ENs_2U9bp1zf0k_YI5rvRiIgopwA_EqCd2qejP06iTIwL3os_jrr_sInGRY0rHGOwpdZkEPIEQBRcvgk "
+                alt=" "> </a>
+    </div>
+
+</body>
 {% endblock contenido %}

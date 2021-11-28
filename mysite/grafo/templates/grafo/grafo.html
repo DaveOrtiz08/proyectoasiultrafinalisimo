@@ -1,6 +1,102 @@
 {% extends 'home/index.html' %}
     {% block contenido %}
-      <center><a href="https://www.youtube.com/watch?v=-Jx74vZEDDo"><img src="https://www.gob.mx/cms/uploads/article/main_image/44507/li.gif" width="700" height="400" ></a></center>
-      <h1><font size="3" style= "color: rgb(163, 9, 184);"><center>HAZ CLICK EN LA IMAGEN PARA VER VIDEO INFORMATIVO</center></font></h1>
+    <table width= 95% style="border: 5px solid rgb(243, 0, 211); background-color: rgb(255, 156, 242);" align="center">
+
+      <tr>
+        <th><center><font size="5" color="White">BASE DE DATOS</font></center></th>
+        <!-- <th><center><font size="4" color="White">NORMA</font></center></th> -->
+        <th><center><font size="5" color="White">DISTANCIA EUCLIDEA</font></center></th>
+        <th><center><font size="5" color="White">RESULTADO DE LOS UMBRALES</font></center></th>
+      </tr>
+    
+      <tr>
+        <td id="nested">
+          <table style="width:auto;"  id="BASE DE DATOS" align="center">
+            <tr>
+              <td>
+                  {% for elemento in lista %}
+                  <tr>
+                      <th style="border: 5px solid rgb(251, 0, 210);">{{elemento.pk}}</th>
+                      {% if elemento.temperatura > 50  %}
+                      <th style="border: 5px solid rgb(255, 136, 136);">{{elemento.temperatura}}</th>
+                      {% else %}
+                      <th style="border: 5px solid rgb(169, 255, 173);">{{elemento.temperatura}}</th>
+                      {% endif %}
+                      <th style="border: 5px solid rgb(248, 35, 135);">{{elemento.color}}</th>
+                      <th style="border: 5px solid rgb(248, 35, 135);">{{elemento.inflamation}}</th>
+                  </tr>
+                  {% endfor %}
+              </td>
+            </tr>
+          </table>
+        </td>
+    
+        <td align="center" valign="top">
+          <div id="Layer1" style="width:700px; height:-400px; overflow: scroll;" >
+            
+            <table style="width:auto; border: 5px solid rgb(255, 81, 217);" id="MATRIZ" align="center" valign="top">
+                    {% for i in euclidea%}
+                    <th>{{forloop.counter}}</th>
+                    {% endfor %}
+        
+                    {% for i in euclidea %}
+                    <tr style="border: 5px solid rgb(255, 81, 217)">
+                        <th>{{forloop.counter}}</th>
+        
+                        {% for j in i %}
+                        {% if j == 0  %}
+                        <td style="border: 5px solid rgb(255, 255, 255);"> {{j}}</td>
+                        {% else %}
+                        <td style="border: 5px solid rgb(255, 0, 255);"> {{j}}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+          </div>
+    
+        </td>
+
+        <td id="nested" valign="top" align="center">
+          <fieldset style="border: 1px solid rgb(253, 0, 211);">
+            <legend>UMBRAL</legend>
+            <form action="{% url 'calculaUmbral' %}" method="GET">
+              {%csrf_token%}
+              <label for="umbral">Umbral</label>
+              <input type="text" name="umbral" id="umbral">
+              <button class="btn" type="submit" name='miboton'> Iniciar procesamiento</button>
   
+          </form>
+          </fieldset>
+          
+          
+          <div style="width:450px; height:6500px; overflow: scroll;" align="CENTER">
+            
+            <table align="CENTER">
+                <th style="border: 5px solid rgb(253, 2, 241);">Iniciales</th>
+                <th style="border: 5px solid rgb(255, 255, 255);">Finales</th>
+                <th style="border: 5px solid rgb(253, 2, 241);">Distancia</th>
+                <th style="border: 5px solid rgb(255, 255, 255);">TRUE/FALSE</th>
+          
+                {% for elemento in listap %}
+                <tr align="center">
+                    <td align="center" , style="border: 5px solid rgb(255, 255, 255);">{{elemento.0}}</td>
+          
+                    <td align="center" , style="border: 5px solid rgb(253, 2, 241);">{{elemento.1}}</td>
+                    <td align="center" , style="border: 5px solid rgb(255, 255, 255);">{{elemento.2}}</td>
+                    {% if elemento.3 == "TRUE" %}
+                    <td align="center" , style="border: 5px solid rgb(255, 255, 255); background-color: #9600a3;">{{elemento.3}}</td>
+                    {% else %}
+                    <td align="center" , style="border: 5px solid rgb(253, 2, 241);">{{elemento.3}}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+          
+            </table>
+          </div>
+              </td>
+
+
+      </table>
+
     {% endblock contenido %}
